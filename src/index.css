@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+:root {
+  --glow-color: rgba(139, 92, 246, 0.15);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0b0f19;
+  color: #f3f4f6;
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.6);
+}
+
+/* Custom Cursor Glow */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(217, 70, 239, 0.05) 50%, transparent 100%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: screen;
+  transition: width 0.2s, height 0.2s;
+  will-change: transform;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.25);
+  transform: translateY(-4px);
+}
+
+/* Text glow styles */
+.text-glow-violet {
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+.text-glow-pink {
+  text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+}
+
+/* Glowing Circles for Hero Background */
+.glow-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  animation: float-slow 20s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.animate-float {
+  animation: float-slow 6s infinite ease-in-out;
+}
+
+/* Typing cursor animation */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Rocket Scroll to Top animation */
+@keyframes rocket-launch {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(10px) scale(0.9);
+  }
+  100% {
+    transform: translateY(-200px) scale(0.5);
+    opacity: 0;
+  }
+}
+.rocket-animate {
+  animation: rocket-launch 0.8s forwards cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+/* Custom terminal styling */
+.terminal-window {
+  font-family: 'Fira Code', ui-monospace, monospace;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #38bdf8;
+  animation: terminal-blink 1s step-end infinite;
+}
+
+@keyframes terminal-blink {
+  from, to { background-color: transparent }
+  50% { background-color: #38bdf8 }
+}
+
+/* Active Nav State */
+.active-nav-link {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  border-bottom: 2px solid #38bdf8;
+}
+
+/* Hide native scrollbar but allow scrolling on specific elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* border-spin animation for premium profile hover glow */
+@keyframes border-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animate-border-spin {
+  animation: border-spin 6s linear infinite;
+}
+
+/* Scroll reveal animations styling */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating animation keyframe for profile card */
+@keyframes float-avatar {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+.animate-float-avatar {
+  animation: float-avatar 6s ease-in-out infinite;
+}
+
+/* Floating bubble backdrop particles */
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-60px) scale(1.25);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120px) scale(0.9);
+    opacity: 0.15;
+  }
+}
+.animate-bubble {
+  animation: bubble-rise 14s infinite ease-in-out alternate;
+}
+
+/* Premium Card hover lifts and shadows */
+.premium-card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.premium-card-hover:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.15);
+}
+
+/* Custom interactive buttons active scale click effects */
+button:active, a:active {
+  transform: scale(0.96);
+}
+
+/* Premium micro-interaction text hover effects */
+a, button {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Make links and interactive text words glow in vibrant sky cyan on hover */
+a:hover {
+  color: #38bdf8 !important; /* Vibrant neon sky cyan */
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* Custom navbar and footer button links hover */
+.nav-container button:hover, footer button:hover {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+/* Highlight tags and tech labels inside cards on hover */
+span[class*="bg-violet-500/10"]:hover, span[class*="bg-indigo-500/10"]:hover {
+  background-color: rgba(56, 189, 248, 0.15) !important;
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
+}
