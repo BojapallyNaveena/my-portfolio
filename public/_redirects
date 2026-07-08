@@ -1,0 +1,4 @@
+/* Netlify deployment redirect for SPA */
+/* Routes all requests to index.html to allow client-side routing */
+/*  */
+/  /index.html  200
